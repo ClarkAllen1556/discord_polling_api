@@ -35,6 +35,5 @@ export const createItem = async (
     channel_id: String(itemData.channel_id),
   };
 
-  const fill = await PollItem.create([newItem]);
-  return fill;
+  return await PollItem.create([newItem]);
 };

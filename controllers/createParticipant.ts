@@ -1,4 +1,4 @@
-import { createItem } from "../services/itemService.ts";
+import { createParticipant } from "../services/participantService.ts";
 import { Context } from "https://deno.land/x/oak/mod.ts";
 
 export default async ({ request, response }: Context) => {
@@ -10,13 +10,7 @@ export default async ({ request, response }: Context) => {
 
   const {
     uid,
-    item_created,
-    author,
-    jump_url,
-    content,
-    embed_url,
-    attachment_url,
-    channel_id,
+    name,
   } = await request.body({ type: "json" }).value;
 
   console.info(
@@ -24,16 +18,10 @@ export default async ({ request, response }: Context) => {
     uid,
   );
 
-  const itemId = await createItem({
+  const participantId = await createParticipant({
     uid,
-    item_created,
-    author,
-    jump_url,
-    content,
-    embed_url,
-    attachment_url,
-    channel_id,
+    name,
   });
 
-  response.body = { msg: `${new Date()} item created`, itemId };
+  response.body = { msg: `${new Date()} participant created`, participantId };
 };
