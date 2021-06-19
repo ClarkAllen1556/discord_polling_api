@@ -8,16 +8,22 @@ export default async ({ request, response }: Context) => {
     return;
   }
 
-  console.info(`${new Date()} >> create item req`, request.headers);
-
   const {
     uid,
     item_created,
     author,
     jump_url,
     content,
-    embed,
+    embed_url,
+    attachment_url,
+    channel_id,
   } = await request.body({ type: "json" }).value;
+
+  console.info(
+    `>> ${new Date()} >> create item req`,
+    uid,
+    await request.body({ type: "json" }).value,
+  );
 
   const itemId = await createItem({
     uid,
@@ -25,7 +31,9 @@ export default async ({ request, response }: Context) => {
     author,
     jump_url,
     content,
-    embed,
+    embed_url,
+    attachment_url,
+    channel_id,
   });
 
   response.body = { msg: `${new Date()} item created`, itemId };

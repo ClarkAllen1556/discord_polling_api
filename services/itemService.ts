@@ -15,7 +15,9 @@ export const createItem = async (
     author?: string;
     jump_url?: string;
     content?: string;
-    embed?: string;
+    embed_url?: string;
+    attachment_url?: string;
+    channel_id?: string;
   },
 ) => {
   client.link([PollItem]);
@@ -24,11 +26,13 @@ export const createItem = async (
     uid: String(itemData.uid),
     item_created: itemData.item_created
       ? new Date(String(itemData.item_created))
-      : new Date(),
+      : null,
     author: String(itemData.author),
     jump_url: String(itemData.jump_url),
     content: String(itemData.content),
-    embed: String(itemData.embed),
+    embed_url: String(itemData.embed_url),
+    attachment_url: String(itemData.attachment_url),
+    channel_id: String(itemData.channel_id),
   };
 
   const fill = await PollItem.create([newItem]);

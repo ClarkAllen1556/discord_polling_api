@@ -13,7 +13,9 @@ class PollItem extends Model {
     author: DataTypes.TEXT,
     jump_url: DataTypes.TEXT,
     content: DataTypes.TEXT,
-    embed: DataTypes.TEXT,
+    embed_url: DataTypes.TEXT,
+    attachment_url: DataTypes.TEXT,
+    channel_id: DataTypes.TEXT,
   };
 }
 
